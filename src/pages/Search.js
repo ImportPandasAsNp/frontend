@@ -103,10 +103,10 @@ const Search = () => {
         <Sidebar/>
         <div className="p-16 py-8 text-2xl  gap-10  flex flex-col items-center h-screen w-full">
             <div className='flex  w-full h-[4rem] tracking-wider'>
-                <input className='w-10/12   bg-dark-primary rounded-l-md px-4 text-white focus:outline-none' placeholder='Search movies, shows and more'/>
-                <label className='w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-black rounded-r-md'>
+                <input className='w-10/12    bg-gray-700 rounded-l-md px-4 text-white focus:outline-none' placeholder='Search movies, shows and more'/>
+                <button className='w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-dark-primary rounded-r-md hover:bg-black'>
                     <p>Search</p>
-                </label>
+                </button>
               
             </div>
             <Tiles data={result} />

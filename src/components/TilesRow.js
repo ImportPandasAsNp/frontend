@@ -10,7 +10,7 @@ const Tiles = (props) => {
 
   return (
     <div className=" w-full flex flex-col gap-3">
-      <h1 className="text-white text-l">{heading}</h1>
+      <h1 className="text-white text-2xl">{heading}</h1>
       <div className="grid grid-cols-6 gap-2">
         {titles.map((title, index) => (
           <Tile index={index} title={title}/>

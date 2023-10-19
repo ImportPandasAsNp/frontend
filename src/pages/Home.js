@@ -71,6 +71,7 @@ const Home = () => {
         <div className="flex bg-primary">
           <Sidebar />
           <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
+            
            <Tiles data={recommended}/>
            <Tiles data={becauseYouLiked}/>
            <Tiles data={fromDirector}/>

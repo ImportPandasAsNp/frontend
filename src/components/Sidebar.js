@@ -6,8 +6,7 @@ const Sidebar = () => {
   const MenuItems = [
     { title: "Home", src: "home" },
     { title: "Search", src: "search" },
-    { title: "Apps", src: "apps" },
-    { title: "Profiles", src: "profiles" },
+    { title: "Profile", src: "profile" },
   ];
 
   const [itemHover, setItemHover] = useState(
@@ -62,14 +61,6 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-      <div className="text-gray-300 text-xl absolute bottom-0 flex items-center mb-16 gap-x-6 cursor-pointer p-2  rounded-md">
-        <img
-          src={require(`../assets/logout.png`)}
-          className={!open && "hidden"}
-          alt=""
-        />
-        <span className={!open && "hidden text-xl font-semibold "}>Logout</span>
-      </div>
     </div>
   );
 };
