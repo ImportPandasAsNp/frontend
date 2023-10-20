@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect,useState} from 'react';
 import Sidebar from '../components/Sidebar';
 import Tiles from "../components/TilesRow";
+const dummyImgUrl = "https://occ-0-2365-2186.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABVXBb2OIJF5kpOGVZ5TNjIydKyVReN6qd6UC2BJGpHfU1KGl1eaCApGzqcdP6LzCYI1Vt2P8UYL2d7FTP4of0zggLAC7i8TlmTI.webp?r=841"
+
 
 const Home = () => {
+
+    useEffect(()=>{
+      
+    })
 
 
     const recommended = {
@@ -73,9 +79,9 @@ const Home = () => {
           <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
             
            <Tiles data={recommended}/>
-           <Tiles data={becauseYouLiked}/>
+           {/* <Tiles data={becauseYouLiked}/>
            <Tiles data={fromDirector}/>
-           <Tiles data={fromActor}/>
+           <Tiles data={fromActor}/> */}
           </div>
         </div>
       );

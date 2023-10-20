@@ -6,8 +6,13 @@ import Sidebar from "../components/Sidebar";
 import Tiles from "../components/TilesRow";
 
 import { useEffect, useState } from "react";
+import useLocalStorage from "../Hooks/LocalStorage";
+import getUrl from "../constants";
+import axios from "axios";
 
 const Search = () => {
+  const [getLocalStorage,setLocalStorage,removeLocalStorage] = useLocalStorage("token")
+
   const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition();
 
@@ -18,6 +23,14 @@ const Search = () => {
   useEffect(() => {
     setInputValue(transcript);
   }, [transcript]);
+
+  const handleSearch = async (text)=>{
+    // token = getLocalStorage()
+    const backendURL = `${getUrl("search")}?query=${text}`
+    const resp = await axios.get(backendURL)
+    console.log(resp)
+    setInputValue("")
+  }
 
   const handleStartListening = () => {
     SpeechRecognition.startListening({
@@ -187,7 +200,8 @@ const Search = () => {
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Search movies, shows and more"
           />
-          <button className="w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-dark-primary rounded-r-md hover:bg-black">
+          <button className="w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-dark-primary rounded-r-md hover:bg-black"
+          onClick={() => handleSearch(inputValue)}>
             <p>Search</p>
           </button>
         </div>

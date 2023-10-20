@@ -1,5 +1,6 @@
 import React from "react";
 import Tile from "./Tile";
+import { useEffect,useState } from "react";
 
 const Tiles = (props) => {
   const data = props.data;
