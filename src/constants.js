@@ -15,7 +15,7 @@ const getContentTemplateFromMetadataList = (list)=>{
             dataDict["name"] = data["_source"]["title"]
 
         if (data["_source"]["image_url"]!==undefined)
-            dataDict["image"] = data["_source_"]["image_url"]
+            dataDict["image"] = data["_source"]["image_url"]
 
         else
             dataDict["image"] = dummyImgUrl
