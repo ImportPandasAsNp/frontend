@@ -7,6 +7,7 @@ const Tile = (props) => {
 
   const index = props.index;
   const title = props.title;
+  const key = title.key
 
   const a = useContext(subsContext);
 
@@ -71,7 +72,13 @@ const Tile = (props) => {
 <button className="text-xs bg-white border-1 rounded-sm text-black w-full text-center px-2 py-1 hover:bg-neutral-500 hover:text-white flex items-center gap-2" onClick={() => addSubHandler(title.platform)}>Subscribe to <span><img alt="" className="w-5" src={require(`../assets/${title.platform}cardlogo.png`)}/></span>{title.platform[0].toUpperCase() +
         title.platform.slice(1)}</button>
         </div>
+
+        
         }
+
+        <div className="flex flex-row items-center gap-1 px-2">
+        <button className="text-xs bg-white border-1 rounded-sm text-black w-full text-center px-2 py-1 hover:bg-neutral-500 hover:text-white flex items-center gap-2" onClick={()=>props.onWatch(key)}>Watch</button>
+        </div>
        
         <div className="text-xs text-white font-normal p-2">
           {title.description}
