@@ -11,8 +11,14 @@ const Profiles = () => {
   const handleRatingChange = (e) => {
     const newRating = e.target.value;
     setSelectedRating(newRating);
-    setAgeRating(newRating);
+   
   };
+
+  const onRatingSaveHandler = ()=>{
+    setAgeRating(selectedRating);
+  }
+
+  console.log(ageRating);
 
   return (
     <div className="flex bg-primary">
@@ -52,7 +58,7 @@ const Profiles = () => {
                   U
                 </option>
               </select>
-              <button className="p-4 py-1 text-white rounded-md text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
+              <button onClick={onRatingSaveHandler} className="p-4 py-1 text-white rounded-md text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
                 Save
               </button>
             </div>
