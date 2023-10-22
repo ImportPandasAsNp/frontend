@@ -5,8 +5,6 @@ import Sidebar from '../components/Sidebar';
 import Tiles from "../components/TilesRow";
 import getUrl, { getContentTemplateFromMetadataList } from '../constants';
 import AgeRatingContext from '../contexts/ageRatingContext';
-const dummyImgUrl = "https://occ-0-2365-2186.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABVXBb2OIJF5kpOGVZ5TNjIydKyVReN6qd6UC2BJGpHfU1KGl1eaCApGzqcdP6LzCYI1Vt2P8UYL2d7FTP4of0zggLAC7i8TlmTI.webp?r=841"
-
 
 const Home = () => {
 
@@ -59,19 +57,7 @@ const Home = () => {
       )
     },[])
 
-    
-      const becauseYouLiked = {
-        heading:"Because you liked Shrek The Third",
-        titles : recommended.titles
-      }
-      const fromDirector = {
-        heading:"From your favorite director",
-        titles : recommended.titles
-      }
-      const fromActor = {
-        heading:"From your favorite actor",
-        titles : recommended.titles
-      }
+  
     
       return (
         <div className="flex bg-primary">
