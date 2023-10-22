@@ -190,7 +190,7 @@ const Search = () => {
   return (
     <div className="flex  bg-primary">
       <Sidebar />
-      <div className="p-16 py-8 text-2xl  gap-10  flex flex-col items-center h-screen w-full">
+      <div className="p-7 text-2xl gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
         <div className="flex  w-full h-[4rem] tracking-wider">
           {!listening ? (
             <button

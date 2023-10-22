@@ -45,7 +45,7 @@ const Tile = (props) => {
         setHover(!hover);
       }}
     >
-      <img src={title.image} alt="" />
+      <img src={title.image}className="w-60 h-80" alt="" />
       <img
         src={require(`../assets/${title.platform}cardlogo.png`)}
         alt=""
