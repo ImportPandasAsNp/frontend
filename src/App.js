@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AgeRatingState from "./contexts/ageRatingState";
 import SubsState from "./contexts/subsState";
 import History from "./pages/History";
 import Home from "./pages/Home";
@@ -9,6 +10,7 @@ import Search from "./pages/Search";
 function App() {
   return (
     <>
+    <AgeRatingState>
       <SubsState>
         <BrowserRouter>
           <Routes>
@@ -20,6 +22,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </SubsState>
+      </AgeRatingState>
     </>
   );
 }

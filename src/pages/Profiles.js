@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Profiles = () => {
+
+  const ageRating = useContext(AgeRatingContext).ageRating;
+
+  const setAgeRating = useContext(AgeRatingContext).setAgeRating;
+
   return (
     <div className="flex bg-primary">
       <Sidebar />
@@ -33,7 +39,7 @@ const Profiles = () => {
                   A
                 </option>
                 <option className="bg-gray-700 text-white" value="U/A13">
-                  U/A 13+
+                  U/A
                 </option>
                 <option className="bg-gray-700 text-white" value="U">
                   U

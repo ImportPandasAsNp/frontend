@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import Sidebar from "../components/Sidebar";
 import Tiles from "../components/TilesRow";
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 import useLocalStorage from "../Hooks/LocalStorage";
-import getUrl from "../constants";
-import { getContentTemplateFromMetadataList } from "../constants";
-import axios from "axios";
+import getUrl, { getContentTemplateFromMetadataList } from "../constants";
+import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Search = () => {
+
+  const ageRating = useContext(AgeRatingContext).ageRating;
+
   const [getLocalStorage,setLocalStorage,removeLocalStorage] = useLocalStorage("token")
   const [result,setResult]= useState({})
 
