@@ -10,7 +10,7 @@ const dummyImgUrl = "https://occ-0-2365-2186.1.nflxso.net/dnm/api/v6/6gmvu2hxdfn
 
 const Home = () => {
 
-    const ageRating = useContext(AgeRatingContext).ageRating;
+    const {ageRating} = useContext(AgeRatingContext);
 
     const [getLocalStorage,setLocalStorage,removeLocalStorage]=useLocalStorage("token")
 

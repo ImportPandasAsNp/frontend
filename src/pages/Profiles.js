@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Profiles = () => {
 
-  const ageRating = useContext(AgeRatingContext).ageRating;
+  const { ageRating, setAgeRating } = useContext(AgeRatingContext);
+  const [selectedRating, setSelectedRating] = useState(ageRating);
 
-  const setAgeRating = useContext(AgeRatingContext).setAgeRating;
+  const handleRatingChange = (e) => {
+    const newRating = e.target.value;
+    setSelectedRating(newRating);
+    setAgeRating(newRating);
+  };
 
   return (
     <div className="flex bg-primary">
@@ -30,15 +35,17 @@ const Profiles = () => {
               </h1>
             </div>
             <div className="flex flex-row w-3/12 gap-3 items-center justify-center">
-              <select
+            <select
                 className="rounded-md h-10 cursor-pointer"
                 name="rating"
                 id="rating"
+                value={selectedRating}
+                onChange={handleRatingChange}
               >
                 <option className="bg-gray-700 text-white" value="A">
                   A
                 </option>
-                <option className="bg-gray-700 text-white" value="U/A13">
+                <option className="bg-gray-700 text-white" value="U/A">
                   U/A
                 </option>
                 <option className="bg-gray-700 text-white" value="U">

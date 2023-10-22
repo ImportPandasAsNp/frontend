@@ -13,7 +13,7 @@ import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Search = () => {
 
-  const ageRating = useContext(AgeRatingContext).ageRating;
+  const {ageRating} = useContext(AgeRatingContext);
 
   const [getLocalStorage,setLocalStorage,removeLocalStorage] = useLocalStorage("token")
   const [result,setResult]= useState({})
