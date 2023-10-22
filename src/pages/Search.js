@@ -44,7 +44,7 @@ const Search = () => {
         "Authorization":"Bearer "+token
       }
     }
-    const resp = await axios.get(backendURL,auth)
+    const resp = await axios.post(backendURL,{"rating":ageRating},auth)
     setResult(generateResponse("Search Results",getContentTemplateFromMetadataList(resp.data)))
   }
 

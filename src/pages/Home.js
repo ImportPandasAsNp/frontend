@@ -37,21 +37,21 @@ const Home = () => {
 
       const backendUrl = getUrl("recommend")
 
-      axios.post(backendUrl,{},auth).then((
+      axios.post(backendUrl,{"rating":ageRating},auth).then((
         (response)=>{
           const list = getContentTemplateFromMetadataList(response.data)
           setRecommended(generateResponse("Recommended for You", list))
         }
       ))
 
-      axios.post(backendUrl+"/mostfrequent"+"/genre",{},auth).then(
+      axios.post(backendUrl+"/mostfrequent"+"/genre",{"rating":ageRating},auth).then(
         (response)=>{
           const list = getContentTemplateFromMetadataList(response.data.data)
           setSimilarGenre(generateResponse("More from "+response.data.key,list))
         }
       )
 
-      axios.post(backendUrl+"/mostfrequent"+"/cast",{},auth).then(
+      axios.post(backendUrl+"/mostfrequent"+"/cast",{"rating":ageRating},auth).then(
         (response)=>{
           const list = getContentTemplateFromMetadataList(response.data.data)
           setSimilarCast(generateResponse("More from "+response.data.key,list))
