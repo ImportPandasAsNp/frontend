@@ -13,6 +13,7 @@ const Home = () => {
     const [getLocalStorage,setLocalStorage,removeLocalStorage]=useLocalStorage("token")
 
     const [recommended,setRecommended] = useState({})
+    const [otherPlatforms,setOtherPlatforms] = useState({})
     const [similarGenre, setSimilarGenre] = useState({})
     const [similarCast, setSimilarCast] = useState({})
 
@@ -42,6 +43,13 @@ const Home = () => {
         }
       ))
 
+      axios.post(backendUrl+"/otherplatforms",{"rating":ageRating},auth).then(
+        (response)=>{
+          const list = getContentTemplateFromMetadataList(response.data)
+          setOtherPlatforms(generateResponse("Watch on other platforms", list))
+        }
+      )
+
       axios.post(backendUrl+"/mostfrequent"+"/genre",{"rating":ageRating},auth).then(
         (response)=>{
           const list = getContentTemplateFromMetadataList(response.data.data)
@@ -65,6 +73,7 @@ const Home = () => {
           <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
             
            {<Tiles data={recommended}/>}
+           {<Tiles data={otherPlatforms}/>}
            <Tiles data={similarGenre}/>
            <Tiles data={similarCast}/>
            {/* <Tiles data={fromActor}/> */}
