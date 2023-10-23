@@ -40,6 +40,7 @@ const Home = () => {
         (response)=>{
           const list = getContentTemplateFromMetadataList(response.data)
           setRecommended(generateResponse("Recommended for You", list))
+          console.log(list)
         }
       ))
 

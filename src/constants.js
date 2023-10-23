@@ -9,6 +9,10 @@ const dummyDescription = "This is a description"
 
 const getContentTemplateFromMetadataList = (list)=>{
     let returnList = []
+
+    if(list===undefined)
+        return returnList
+    
     list.map((data)=>{
         let dataDict = {}
         if (data["_source"]["title"] !== undefined)
