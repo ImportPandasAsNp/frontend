@@ -221,7 +221,7 @@ const Search = () => {
             <p>Search</p>
           </button>
         </div>
-        <Tiles data={result} />
+        <Tiles data={result} watchable={true}/>
       </div>
     </div>
   );

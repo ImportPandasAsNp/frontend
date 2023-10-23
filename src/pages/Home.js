@@ -72,10 +72,10 @@ const Home = () => {
           <Sidebar />
           <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
             
-           {<Tiles data={recommended}/>}
-           {<Tiles data={otherPlatforms}/>}
-           <Tiles data={similarGenre}/>
-           <Tiles data={similarCast}/>
+           {<Tiles data={recommended} watchable={true}/>}
+           {<Tiles data={otherPlatforms} watchable={false}/>}
+           <Tiles data={similarGenre} watchable={true}/>
+           <Tiles data={similarCast} watchable={true}/>
            {/* <Tiles data={fromActor}/> */}
           </div>
         </div>

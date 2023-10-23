@@ -67,7 +67,7 @@ const Tiles = (props) => {
       <h1 className="text-white text-2xl">{heading}</h1>
       <div className="grid grid-cols-6 gap-2">
         {titles.map((title, index) => (
-          <Tile index={index} title={title} key={title.key} onWatch={onWatchHandler} onSubscriptions={onSubscriptionsHandler}/>
+          <Tile index={index} title={title} key={title.key} onWatch={onWatchHandler} onSubscriptions={onSubscriptionsHandler} watchable={props.watchable}/>
         ))}
       </div>
     </div>
