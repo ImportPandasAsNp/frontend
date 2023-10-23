@@ -62,7 +62,16 @@ const Tiles = (props) => {
     })    
   }
 
+  if(titles.length==0){
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+
   return (
+
     <div className=" w-full flex flex-col gap-3">
       <h1 className="text-white text-2xl">{heading}</h1>
       <div className="grid grid-cols-6 gap-2">
@@ -72,6 +81,7 @@ const Tiles = (props) => {
       </div>
     </div>
   );
+        
 };
 
 export default Tiles;
