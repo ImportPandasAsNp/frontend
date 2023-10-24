@@ -16,7 +16,8 @@ const Login = () => {
 
   async function handleLogin(email, password) {
     const userData = {
-      name:"adnan",
+      name:"dummy",
+      genre:'dummy',
       email,
       password,
     };

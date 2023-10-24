@@ -25,6 +25,8 @@ const Tiles = (props) => {
 
   const onWatchHandler = (key,title)=>{
     window.confirm("You watched "+title)
+    let r = (Math.random() + 1).toString(36).substring(7)
+    props.whenChange(r)
     const token = getLocalStorage("token")
     const backendURL = getUrl("history")
     const body = {
@@ -45,6 +47,8 @@ const Tiles = (props) => {
 
   const onSubscriptionsHandler = (platform)=>{
     window.confirm("You subscribed to "+platform)
+    let r = (Math.random() + 1).toString(36).substring(7)
+    props.whenChange(r)
     const token = getLocalStorage("token")
     const backendURL = getUrl("subscriptions")
     const body = {
