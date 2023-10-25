@@ -64,7 +64,7 @@ const Tile = (props) => {
         </p>
         {props.watchable ? 
          <div className="flex flex-row items-center gap-1 px-2">
-        <button className="text-xs bg-white border-1 rounded-sm text-black w-4/12 text-center px-2 py-1 hover:bg-neutral-500 hover:text-white">Play</button>
+        <button className="text-xs bg-white border-1 rounded-sm text-black w-4/12 text-center px-2 py-1 hover:bg-neutral-500 hover:text-white" onClick={()=>props.onWatch(key,title.name)}>Watch</button>
         <div className="text-xs font-normal text-neutral-300 px-1 w-6/12  flex items-center gap-2" >on <span><img alt="" className="w-5" src={require(`../assets/${title.platform}cardlogo.png`)}/></span> <p>{title.platform[0].toUpperCase() +
         title.platform.slice(1)}</p></div>
         </div> : 
@@ -76,9 +76,9 @@ const Tile = (props) => {
         
         }
 
-        {props.watchable && <div className="flex flex-row items-center gap-1 px-2">
-        <button className="text-xs bg-white border-1 rounded-sm text-black w-full text-center px-2 py-1 hover:bg-neutral-500 hover:text-white flex items-center gap-2" onClick={()=>props.onWatch(key,title.name)}>Watch</button>
-        </div>}
+        {/* {props.watchable && <div className="flex flex-row items-center gap-1 px-2">
+        <button className="text-xs bg-white border-1 rounded-sm text-black w-full text-center px-2 py-1 hover:bg-neutral-500 hover:text-white flex items-center gap-2" >Watch</button>
+        </div>} */}
        
         <div className="text-xs text-white font-normal p-2">
           {title.description}

@@ -1,29 +1,37 @@
-import React,{useState} from "react";
+import axios from 'axios';
+import React, { useState } from "react";
 import getUrl from "../constants";
-import axios from 'axios'
 
-import { constants } from "buffer";
 
-async function handleRegistration(name, email, password, genre) {
-  const userData = {
-    name,
-    email,
-    password,
-    genre
-  };
-
-  const backendURL = getUrl("auth/signup"); // Replace with your actual backend URL
-
-  try {
-    const response = await axios.post(backendURL, userData);
-
-    console.log('Registration successful:', response.data);
-  } catch (error) {
-    console.error('Registration failed:', error);
-  }
-}
 
 const Register = () => {
+
+  async function handleRegistration(name, email, password, genre) {
+    const userData = {
+      name,
+      email,
+      password,
+      genre
+    };
+  
+    const backendURL = getUrl("auth/signup"); // Replace with your actual backend URL
+  
+    try {
+      const response = await axios.post(backendURL, userData);
+  
+      console.log('Registration successful:', response.data);
+      setName('');
+      setEmail('');
+      setPassword('');
+      setGenre('');
+      alert("Registration Successful");
+  
+    } catch (error) {
+      console.error('Registration failed:', error);
+      alert("Registration Failed");
+    }
+  }
+  
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
