@@ -24,6 +24,7 @@ const Search = () => {
   const [inputValue, setInputValue] = useState("");
 
   const [listening, setListening] = useState(false);
+  const [clicked,setClicked]= useState('')
 
   useEffect(() => {
     setInputValue(transcript);
@@ -221,7 +222,7 @@ const Search = () => {
             <p>Search</p>
           </button>
         </div>
-        <Tiles data={result} watchable={true}/>
+        <Tiles data={result} watchable={true} whenChange={setClicked}/>
       </div>
     </div>
   );
