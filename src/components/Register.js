@@ -1,10 +1,15 @@
 import axios from 'axios';
 import React, { useState } from "react";
 import getUrl from "../constants";
-
+import useLocalStorage from '../Hooks/LocalStorage';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
+  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
+  const [getLocalStorage, setLocalStorage,removeLocalStorage] = useLocalStorage("token")
+
+  const navigate = useNavigate()
 
   async function handleRegistration(name, email, password, genre) {
     const userData = {
@@ -18,12 +23,15 @@ const Register = () => {
   
     try {
       const response = await axios.post(backendURL, userData);
+      setLocalEmail(email)
   
       console.log('Registration successful:', response.data);
+      setLocalStorage(response.data.body.token)
       setName('');
       setEmail('');
       setPassword('');
       setGenre('');
+      // navigate("/home")
       alert("Registration Successful");
   
     } catch (error) {

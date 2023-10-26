@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [getLocalStorage, setLocalStorage,removeLocalStorage] = useLocalStorage("token")
+  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
   const navigate = useNavigate()
 
 
@@ -28,6 +29,7 @@ const Login = () => {
       const response = await axios.post(backendURL, userData);
       const body = response.data.body
       setLocalStorage(body.token)
+      setLocalEmail(userData.email)
       navigate("/home")
       console.log('Registration successful:', body.token);
 

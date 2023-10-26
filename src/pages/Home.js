@@ -12,6 +12,10 @@ const Home = () => {
 
     const [getLocalStorage,setLocalStorage,removeLocalStorage]=useLocalStorage("token")
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+   }
+
     const [recommended,setRecommended] = useState({})
     const [otherPlatforms,setOtherPlatforms] = useState({})
     const [similarGenre, setSimilarGenre] = useState({})
@@ -26,6 +30,12 @@ const Home = () => {
     }
 
     useEffect(()=>{
+
+      // if(clicked!==''){
+      //   sleep(2000).then(()=>{
+          
+      //   })
+      // }
       const token = getLocalStorage()
       console.log(token)
       const auth = {
@@ -65,10 +75,9 @@ const Home = () => {
           setSimilarCast(generateResponse("More from "+response.data.key,list))
         }
       )
-    },[clicked])
+    },[])
 
-  
-    
+
       return (
         <div className="flex bg-primary">
           <Sidebar />

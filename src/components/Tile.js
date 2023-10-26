@@ -39,10 +39,10 @@ const Tile = (props) => {
       key={index}
       className="w-full  relative cursor-pointer"
       onMouseEnter={() => {
-        setHover(!hover);
+        setHover(true);
       }}
       onMouseLeave={() => {
-        setHover(!hover);
+        setHover(false);
       }}
     >
       <img src={title.image}className="w-60 h-80" alt="" />

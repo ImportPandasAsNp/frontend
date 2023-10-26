@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import AgeRatingContext from "../contexts/ageRatingContext";
+import useLocalStorage from "../Hooks/LocalStorage";
 
 const Profiles = () => {
 
   const { ageRating, setAgeRating } = useContext(AgeRatingContext);
   const [selectedRating, setSelectedRating] = useState(ageRating);
+  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
 
   const handleRatingChange = (e) => {
     const newRating = e.target.value;
@@ -26,11 +28,11 @@ const Profiles = () => {
       <div className="p-24 text-2xl  gap-10  flex flex-col items-center h-screen w-full">
         <div className="  w-7/12 bg-dark-primary flex flex-col gap-2 rounded-lg divide-y divide-slate-700">
           <div className="flex flex-col  p-10 py-5 ">
-            <h1 className="font-semibold text-white text-5xl">
+            {/* <h1 className="font-semibold text-white text-5xl">
               Adnan Khurshid
-            </h1>
+            </h1> */}
             <h3 className="text-md text-neutral-400">
-              adnankhurshid251@gmail.com
+              {getLocalEmail()}
             </h3>
           </div>
           <div className="flex flex-row justify-between p-10 py-5">
