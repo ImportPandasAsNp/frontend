@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../Hooks/LocalStorage";
 import Sidebar from "../components/Sidebar";
 import AgeRatingContext from "../contexts/ageRatingContext";
-import useLocalStorage from "../Hooks/LocalStorage";
 
 const Profiles = () => {
 
   const { ageRating, setAgeRating } = useContext(AgeRatingContext);
   const [selectedRating, setSelectedRating] = useState(ageRating);
-  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
+  const [getLocalEmail] = useLocalStorage("email")
 
   const handleRatingChange = (e) => {
     const newRating = e.target.value;

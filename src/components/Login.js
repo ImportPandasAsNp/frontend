@@ -1,10 +1,8 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useNavigation } from 'react-router-dom';
-import { useState } from 'react';
-import getUrl from '../constants';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../Hooks/LocalStorage';
+import getUrl from '../constants';
 
 const Login = () => {
 

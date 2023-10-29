@@ -82,7 +82,7 @@ const Home = () => {
         <div className="flex bg-primary">
           <Sidebar />
           <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
-            
+
            {<Tiles data={recommended} watchable={true} whenChange={setClicked}/>}
            {<Tiles data={otherPlatforms} watchable={false} whenChange={setClicked}/>}
            <Tiles data={similarGenre} watchable={true} whenChange={setClicked}/>

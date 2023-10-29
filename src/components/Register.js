@@ -1,50 +1,49 @@
-import axios from 'axios';
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../Hooks/LocalStorage";
 import getUrl from "../constants";
-import useLocalStorage from '../Hooks/LocalStorage';
-import { useNavigate } from 'react-router-dom';
-
 
 const Register = () => {
-  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
-  const [getLocalStorage, setLocalStorage,removeLocalStorage] = useLocalStorage("token")
+  const [getLocalEmail, setLocalEmail, removeLocalEmail] =
+    useLocalStorage("email");
+  const [getLocalStorage, setLocalStorage, removeLocalStorage] =
+    useLocalStorage("token");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleRegistration(name, email, password, genre) {
     const userData = {
       name,
       email,
       password,
-      genre
+      genre,
     };
-  
+
     const backendURL = getUrl("auth/signup"); // Replace with your actual backend URL
-  
+
     try {
       const response = await axios.post(backendURL, userData);
-      setLocalEmail(email)
-  
-      console.log('Registration successful:', response.data);
-      setLocalStorage(response.data.body.token)
-      setName('');
-      setEmail('');
-      setPassword('');
-      setGenre('');
+      setLocalEmail(email);
+
+      console.log("Registration successful:", response.data);
+      setLocalStorage(response.data.body.token);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setGenre("");
       // navigate("/home")
       alert("Registration Successful");
-  
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error("Registration failed:", error);
       alert("Registration Failed");
     }
   }
-  
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [genre,setGenre] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [genre, setGenre] = useState("");
 
   return (
     <>
@@ -92,17 +91,20 @@ const Register = () => {
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
         >
-            <option value="drama">Drama</option>
-            <option value="comedy">Comedy</option>
-            <option value="action">Action</option>
-            <option value="romance">Romance</option>
-            <option value="thriller">Thriller</option>
-            <option value="science fiction">Science Fiction</option>
-            <option value="documentary">Documentary</option>
+          <option value="drama">Drama</option>
+          <option value="comedy">Comedy</option>
+          <option value="action">Action</option>
+          <option value="romance">Romance</option>
+          <option value="thriller">Thriller</option>
+          <option value="science fiction">Science Fiction</option>
+          <option value="documentary">Documentary</option>
         </select>
       </div>
-      <button className="p-4 py-1 mt-4 text-white rounded-md font-base text-center w-full bg-blue-600 hover:bg-blue-800 cursor-pointer
-      " onClick={() => handleRegistration(name, email, password,genre)}>
+      <button
+        className="p-4 py-1 mt-4 text-white rounded-md font-base text-center w-full bg-blue-600 hover:bg-blue-800 cursor-pointer
+      "
+        onClick={() => handleRegistration(name, email, password, genre)}
+      >
         Register
       </button>
     </>
