@@ -1,14 +1,18 @@
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../Hooks/LocalStorage";
 import Sidebar from "../components/Sidebar";
+import getUrl from "../constants";
 import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Profiles = () => {
 
   const { ageRating, setAgeRating } = useContext(AgeRatingContext);
   const [selectedRating, setSelectedRating] = useState(ageRating);
-  const [getLocalEmail] = useLocalStorage("email")
+  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
+  const [getLocalStorage, setLocalStorage, removeLocalStorage] =
+    useLocalStorage("token");
 
   const handleRatingChange = (e) => {
     const newRating = e.target.value;
@@ -21,6 +25,29 @@ const Profiles = () => {
   }
 
   console.log(ageRating);
+
+  const clearSearchContext = ()=>{
+    const token = getLocalStorage();
+    console.log(token);
+    const auth = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const clearSearchUrl = getUrl("search/clear");
+
+    axios.get(clearSearchUrl,auth).then(() => {
+      console.log("Search Context Cleared");
+    });
+  }
+  
+  useEffect(() => {
+
+    clearSearchContext();
+
+  }, []);
+
 
   return (
     <div className="flex bg-primary">
@@ -76,7 +103,7 @@ const Profiles = () => {
           <div className="flex flex-row justify-between p-10 py-5">
         
             
-            <button className="p-4 py-1 text-white rounded-md font-base text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
+            <button onClick={clearSearchContext} className="p-4 py-1 text-white rounded-md font-base text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
             <Link to={`/`}>Logout</Link>
             </button>
             

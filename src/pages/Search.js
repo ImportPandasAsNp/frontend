@@ -41,6 +41,7 @@ const Search = () => {
   }
 
   const handleSearch = async (text)=>{
+    setResult({});
     setLoading(true);
     const token = getLocalStorage()
     const backendURL = `${getUrl("search")}?query=${text}`

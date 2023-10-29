@@ -25,7 +25,13 @@ const History = () => {
       }
     }
 
-    const backendURL = getUrl("history")
+    
+    const clearSearchUrl = getUrl("search/clear");
+
+    axios.get(clearSearchUrl,auth).then(() => {
+      console.log("Search Context Cleared");
+    });
+     const backendURL = getUrl("history")
 
     axios.get(backendURL,auth).then((resp)=>{
       let array = getContentTemplateFromMetadataList(resp.data)
