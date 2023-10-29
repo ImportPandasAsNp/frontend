@@ -22,7 +22,7 @@ const Tiles = (props) => {
     );
   }
 
-  const onWatchHandler = (key, title) => {
+  const onWatchHandler = (key, title,sliderValue) => {
     window.confirm("You watched " + title);
     let r = (Math.random() + 1).toString(36).substring(7);
     props.whenChange(r);
@@ -30,7 +30,7 @@ const Tiles = (props) => {
     const backendURL = getUrl("history");
     const body = {
       movie_id: key,
-      duration: "1",
+      duration: sliderValue,
     };
 
     const auth = {

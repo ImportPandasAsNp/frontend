@@ -74,7 +74,7 @@ const Tile = (props) => {
             <div className="flex flex-row items-center gap-1 px-2">
               <button
                 className="text-xs bg-white border-1 rounded-sm text-black w-6/12 text-center px-2 py-1 hover:bg-neutral-500 hover:text-white"
-                onClick={() => props.onWatch(key, title.name)}
+                onClick={() => props.onWatch(key, title.name,sliderValue)}
               >
                 Watch
               </button>
