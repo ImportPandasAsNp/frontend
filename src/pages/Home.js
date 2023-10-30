@@ -114,7 +114,8 @@ const Home = () => {
     axios
       .post(backendUrl + "/otherplatforms", { rating: ageRating }, auth)
       .then((response) => {
-        const list = getContentTemplateFromMetadataList(response.data);
+        console.log(response.data)
+        const list = getContentTemplateFromMetadataList(response.data[0]);
         setOtherPlatforms(generateResponse("Watch on other platforms", list));
       });
 
