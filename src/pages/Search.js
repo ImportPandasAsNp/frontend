@@ -88,6 +88,23 @@ const Search = () => {
     return null;
   }
 
+  const clearContextHandler = ()=>{
+    setContextStrings([])
+    
+    const token = getLocalStorage();
+    console.log(token);
+    const auth = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const clearSearchUrl = getUrl("search/clear");
+
+    axios.get(clearSearchUrl, auth).then(() => {
+      console.log("Search Context Cleared");
+    });
+  }
+
   result.heading = null;
 
   return (
@@ -148,7 +165,7 @@ const Search = () => {
                 </div>
               ))}
             </div>
-            <button onClick={()=> setContextStrings([])} className="text-sm font-semibold bg-white border-1 h-10 rounded-md text-black text-center px-2 py-1 hover:bg-neutral-500 hover:text-white">
+            <button onClick={()=> clearContextHandler()} className="text-sm font-semibold bg-white border-1 h-10 rounded-md text-black text-center px-2 py-1 hover:bg-neutral-500 hover:text-white">
               X Clear Context
             </button>
           </div>

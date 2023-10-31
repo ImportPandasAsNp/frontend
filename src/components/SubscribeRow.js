@@ -21,7 +21,7 @@ const SubscribeRow = (props) => {
 
   const titles = data.titles;
 
-  if (titles === undefined) {
+  if (titles === undefined||titles.length==0) {
     return <></>;
   }
 
@@ -76,7 +76,7 @@ const SubscribeRow = (props) => {
     <>
       <div className="w-full border-2 flex flex-col gap-6 bg-neutral-200 rounded-md p-4">
         <h1 className="text-4xl text-neutral-700">
-          {`Watch more from ${capitalize(data.genre)} on ${capitalize(platform)}`}
+          {`${data.heading}`}
         </h1>
         <div className="grid grid-cols-6 gap-2">
 
@@ -98,7 +98,7 @@ const SubscribeRow = (props) => {
               cl
             />
 
-            <button className="w-11/12 rounded-md  text-2xl bg-neutral-800 border-1 text-white text-center px-2 py-1 hover:bg-neutral-500 hover:text-white">
+            <button className="w-11/12 rounded-md  text-2xl bg-neutral-800 border-1 text-white text-center px-2 py-1 hover:bg-neutral-500 hover:text-white" onClick={()=>onSubscriptionsHandler(data.platform)}>
               Subscribe
             </button>
           </div>
