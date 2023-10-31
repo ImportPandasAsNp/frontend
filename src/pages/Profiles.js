@@ -7,26 +7,25 @@ import getUrl from "../constants";
 import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Profiles = () => {
-
   const { ageRating, setAgeRating } = useContext(AgeRatingContext);
   const [selectedRating, setSelectedRating] = useState(ageRating);
-  const [getLocalEmail, setLocalEmail,removeLocalEmail] = useLocalStorage("email")
+  const [getLocalEmail, setLocalEmail, removeLocalEmail] =
+    useLocalStorage("email");
   const [getLocalStorage, setLocalStorage, removeLocalStorage] =
     useLocalStorage("token");
 
   const handleRatingChange = (e) => {
     const newRating = e.target.value;
     setSelectedRating(newRating);
-   
   };
 
-  const onRatingSaveHandler = ()=>{
+  const onRatingSaveHandler = () => {
     setAgeRating(selectedRating);
-  }
+  };
 
   console.log(ageRating);
 
-  const clearSearchContext = ()=>{
+  const clearSearchContext = () => {
     const token = getLocalStorage();
     console.log(token);
     const auth = {
@@ -37,17 +36,14 @@ const Profiles = () => {
 
     const clearSearchUrl = getUrl("search/clear");
 
-    axios.get(clearSearchUrl,auth).then(() => {
+    axios.get(clearSearchUrl, auth).then(() => {
       console.log("Search Context Cleared");
     });
-  }
-  
+  };
+
   useEffect(() => {
-
     clearSearchContext();
-
   }, []);
-
 
   return (
     <div className="flex bg-primary">
@@ -58,9 +54,7 @@ const Profiles = () => {
             {/* <h1 className="font-semibold text-white text-5xl">
               Adnan Khurshid
             </h1> */}
-            <h3 className="text-md text-neutral-400">
-              {getLocalEmail()}
-            </h3>
+            <h3 className="text-md text-neutral-400">{getLocalEmail()}</h3>
           </div>
           <div className="flex flex-row justify-between p-10 py-5">
             <div className="flex flex-col gap-1">
@@ -70,7 +64,7 @@ const Profiles = () => {
               </h1>
             </div>
             <div className="flex flex-row w-3/12 gap-3 items-center justify-center">
-            <select
+              <select
                 className="rounded-md h-10 cursor-pointer"
                 name="rating"
                 id="rating"
@@ -87,26 +81,28 @@ const Profiles = () => {
                   U
                 </option>
               </select>
-              <button onClick={onRatingSaveHandler} className="p-4 py-1 text-white rounded-md text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
+              <button
+                onClick={onRatingSaveHandler}
+                className="p-4 py-1 text-white rounded-md text-center bg-blue-600 hover:bg-blue-800 cursor-pointer"
+              >
                 Save
               </button>
             </div>
           </div>
           <div className="flex flex-row justify-between p-10 py-5">
-            
-            <Link  to={`/history`}>
-            <button className="p-4 py-1 text-white rounded-md font-normal text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
-            Watch History &#11111;
-            </button>
+            <Link to={`/history`}>
+              <button className="p-4 py-1 text-white rounded-md font-normal text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
+                Watch History &#11111;
+              </button>
             </Link>
           </div>
           <div className="flex flex-row justify-between p-10 py-5">
-        
-            
-            <button onClick={clearSearchContext} className="p-4 py-1 text-white rounded-md font-base text-center bg-blue-600 hover:bg-blue-800 cursor-pointer">
-            <Link to={`/`}>Logout</Link>
+            <button
+              onClick={clearSearchContext}
+              className="p-4 py-1 text-white rounded-md font-base text-center bg-blue-600 hover:bg-blue-800 cursor-pointer"
+            >
+              <Link to={`/`}>Logout</Link>
             </button>
-            
           </div>
         </div>
       </div>

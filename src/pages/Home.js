@@ -2,11 +2,65 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import useLocalStorage from "../Hooks/LocalStorage";
 import Sidebar from "../components/Sidebar";
+import SubscribeRow from "../components/SubscribeRow";
 import Tiles from "../components/TilesRow";
 import getUrl, { getContentTemplateFromMetadataList } from "../constants";
 import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Home = () => {
+
+    const subscribeSuggestions = {
+    platform: "netflix",
+    genre: "sci-fi",
+    titles: [
+      {
+        name: "Seinfeld",
+        image:
+          "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
+        platform: "netflix",
+        genre: ["comedy"],
+        description:
+          "Jerry Seinfeld and his friends navigate New York's ups and downs in this iconic 'nothing'-based sitcom.",
+      },
+      {
+        name: "Rick and Morty",
+        image:
+        "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
+        platform: "netflix",
+        genre: ["comedy", "scifi"],
+        description:
+          "Join the eccentric scientist Rick Sanchez and his good-hearted but easily influenced grandson, Morty, in a series of wild interdimensional adventures.",
+      },
+      {
+        name: "Better Call Saul",
+        image:
+        "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
+        platform: "netflix",
+        genre: ["drama", "thriller", "crime"],
+        description:
+          "Explore the origin story of the infamous lawyer Saul Goodman in this prequel to Breaking Bad, navigating the complex world of law and morality.",
+      },
+      {
+        name: "Suits",
+        image:
+        "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
+        platform: "netflix",
+        genre: ["drama", "crime", "comedy"],
+        description:
+          "Experience the high-stakes legal world through the eyes of Mike Ross, a brilliant but unconventional legal prodigy, and his mentor Harvey Specter.",
+      },
+      {
+        name: "Breaking Bad",
+        image:
+        "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
+        platform: "netflix",
+        genre: ["drama", "thriller", "crime"],
+        description:
+          "Follow Walter White, a desperate high school chemistry teacher turned ruthless methamphetamine kingpin, in this gripping crime drama.",
+      },
+    ],
+  };
+
   const { ageRating } = useContext(AgeRatingContext);
 
   const [getLocalStorage, setLocalStorage, removeLocalStorage] =
@@ -45,7 +99,7 @@ const Home = () => {
 
     const clearSearchUrl = getUrl("search/clear");
 
-    axios.get(clearSearchUrl,auth).then(() => {
+    axios.get(clearSearchUrl, auth).then(() => {
       console.log("Search Context Cleared");
     });
 
@@ -91,6 +145,7 @@ const Home = () => {
     <div className="flex bg-primary">
       <Sidebar />
       <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
+        <SubscribeRow data={subscribeSuggestions} watchable={false} whenChange={setClicked} />
         {<Tiles data={recommended} watchable={true} whenChange={setClicked} />}
         {
           <Tiles

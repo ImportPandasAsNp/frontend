@@ -1,25 +1,29 @@
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import Sidebar from "../components/Sidebar";
-import Tiles from "../components/TilesRow";
-
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { MoonLoader } from "react-spinners";
 import useLocalStorage from "../Hooks/LocalStorage";
+import Sidebar from "../components/Sidebar";
+import Tiles from "../components/TilesRow";
 import getUrl, { getContentTemplateFromMetadataList } from "../constants";
 import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Search = () => {
+  const [contextStrings, setContextStrings] = useState([]);
 
-  const [loading,setLoading] = useState(false);
+  const contextStringsHandler = (val) => {
+    setContextStrings([...contextStrings, val]);
+  };
 
-  const {ageRating} = useContext(AgeRatingContext);
+  const [loading, setLoading] = useState(false);
 
-  const [getLocalStorage,setLocalStorage,removeLocalStorage] = useLocalStorage("token")
-  const [result,setResult]= useState({})
+  const { ageRating } = useContext(AgeRatingContext);
+
+  const [getLocalStorage, setLocalStorage, removeLocalStorage] =
+    useLocalStorage("token");
+  const [result, setResult] = useState({});
 
   const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition();
@@ -27,33 +31,44 @@ const Search = () => {
   const [inputValue, setInputValue] = useState("");
 
   const [listening, setListening] = useState(false);
-  const [clicked,setClicked]= useState('')
+  const [clicked, setClicked] = useState("");
 
   useEffect(() => {
     setInputValue(transcript);
   }, [transcript]);
 
-  const generateResponse = (heading,list)=>{
+  const generateResponse = (heading, list) => {
     return {
-      heading:heading,
-      titles:list
-    }
-  }
+      heading: heading,
+      titles: list,
+    };
+  };
 
-  const handleSearch = async (text)=>{
+  // useEffect(() => {
+  //   console.log(contextStrings);
+  // }, [contextStrings]);
+
+  const handleSearch = async (text) => {
+    console.log(text);
+    contextStringsHandler(text);
     setResult({});
     setLoading(true);
-    const token = getLocalStorage()
-    const backendURL = `${getUrl("search")}?query=${text}`
+    const token = getLocalStorage();
+    const backendURL = `${getUrl("search")}?query=${text}`;
     const auth = {
-      "headers":{
-        "Authorization":"Bearer "+token
-      }
-    }
-    const resp = await axios.post(backendURL,{"rating":ageRating},auth)
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const resp = await axios.post(backendURL, { rating: ageRating }, auth);
     setLoading(false);
-    setResult(generateResponse("Search Results",getContentTemplateFromMetadataList(resp.data)))
-  }
+    setResult(
+      generateResponse(
+        "Search Results",
+        getContentTemplateFromMetadataList(resp.data)
+      )
+    );
+  };
 
   const handleStartListening = () => {
     SpeechRecognition.startListening({
@@ -68,7 +83,6 @@ const Search = () => {
     SpeechRecognition.stopListening();
     setListening(false);
   };
-
 
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -86,7 +100,11 @@ const Search = () => {
               className="p-4 text-white flex flex-col text-sm   mr-4 bg-blue-700 hover:bg-blue-900 rounded-full"
               onClick={handleStartListening}
             >
-              <img className="w-8" alt="" src={require("../assets/micstart.png")} />{" "}
+              <img
+                className="w-8"
+                alt=""
+                src={require("../assets/micstart.png")}
+              />{" "}
               <p className="mt-4">Start</p>{" "}
             </button>
           ) : (
@@ -94,7 +112,11 @@ const Search = () => {
               className="p-4 text-white flex flex-col text-sm   mr-4 bg-red-600 hover:bg-red-900 rounded-full"
               onClick={handleStopListening}
             >
-              <img className="w-8" alt="" src={require("../assets/micstop.png")} />{" "}
+              <img
+                className="w-8"
+                alt=""
+                src={require("../assets/micstop.png")}
+              />{" "}
               <p className="mt-4">Stop</p>
             </button>
           )}
@@ -105,19 +127,40 @@ const Search = () => {
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Search movies, shows and more"
           />
-          <button className="w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-dark-primary rounded-r-md hover:bg-black"
-          onClick={() => handleSearch(inputValue)}>
+          <button
+            className="w-2/12 flex justify-center items-center font-semibold text-white text-3xl bg-dark-primary rounded-r-md hover:bg-black"
+            onClick={() => {
+              handleSearch(inputValue);
+            }}
+          >
             <p>Search</p>
           </button>
         </div>
+        {contextStrings.length>0 && (
+          <div className="w-full flex flex-row gap-4">
+            <div className="w-10/12 overflow-auto px-4 flex flex-wrap-8 gap-2">
+              {contextStrings.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-dark-primary rounded-full text-neutral-200 py-2 px-4 text-base min-w-[80px] text-center max-w-xs truncate"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <button onClick={()=> setContextStrings([])} className="text-sm font-semibold bg-white border-1 h-10 rounded-md text-black text-center px-2 py-1 hover:bg-neutral-500 hover:text-white">
+              X Clear Context
+            </button>
+          </div>
+        )}
         <MoonLoader
-        color={"#ffffff"}
-        loading={loading}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        className="mt-60"
+          color={"#ffffff"}
+          loading={loading}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          className="mt-60"
         />
-        <Tiles data={result} watchable={true} whenChange={setClicked}/>
+        <Tiles data={result} watchable={true} whenChange={setClicked} />
       </div>
     </div>
   );
