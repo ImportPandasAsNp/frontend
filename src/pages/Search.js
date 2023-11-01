@@ -24,6 +24,10 @@ const Search = () => {
   const [getLocalStorage, setLocalStorage, removeLocalStorage] =
     useLocalStorage("token");
   const [result, setResult] = useState({});
+  const [resultFromOtherPlatforms,setResultFromOtherPlatforms] = useState({
+    "heading" : "Search results from other platforms",
+    "data" : [],
+  })
 
   const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition();
@@ -178,6 +182,7 @@ const Search = () => {
           className="mt-60"
         />
         <Tiles data={result} watchable={true} whenChange={setClicked} />
+       { resultFromOtherPlatforms.data.length >0 && <Tiles data={resultFromOtherPlatforms} watchable={false} whenChange={setClicked} /> }
       </div>
     </div>
   );
