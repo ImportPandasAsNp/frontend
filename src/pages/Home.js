@@ -138,7 +138,7 @@ const Home = () => {
             sliderData.push(elem)
           }
         })
-        sliderData = sliderData.slice(0,Math.min(sliderData.length,4))
+        sliderData = sliderData.slice(0,Math.min(sliderData.length,5))
         setSubscribeSuggestions(generateHeading(`Based on your preferences you should subscribe to ${bestOtherPlatform}`,bestOtherPlatform,sliderData))
       }
 
