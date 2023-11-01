@@ -26,7 +26,7 @@ const Search = () => {
   const [result, setResult] = useState({});
   const [resultFromOtherPlatforms,setResultFromOtherPlatforms] = useState({
     "heading" : "Search results from other platforms",
-    "data" : [],
+    "titles" : [],
   })
 
   const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
@@ -56,6 +56,10 @@ const Search = () => {
     console.log(text);
     contextStringsHandler(text);
     setResult({});
+    setResultFromOtherPlatforms({
+      "heading":"",
+      "titles":[]
+    })
     setLoading(true);
     const token = getLocalStorage();
     const backendURL = `${getUrl("search")}?query=${text}`;
@@ -69,9 +73,16 @@ const Search = () => {
     setResult(
       generateResponse(
         "Search Results",
-        getContentTemplateFromMetadataList(resp.data)
+        getContentTemplateFromMetadataList(resp.data[0])
       )
     );
+
+    setResultFromOtherPlatforms(
+      generateResponse(
+        "Results from other platforms",
+        getContentTemplateFromMetadataList(resp.data[1])
+      )
+    )
   };
 
   const handleStartListening = () => {
@@ -182,7 +193,7 @@ const Search = () => {
           className="mt-60"
         />
         <Tiles data={result} watchable={true} whenChange={setClicked} />
-       { resultFromOtherPlatforms.data.length >0 && <Tiles data={resultFromOtherPlatforms} watchable={false} whenChange={setClicked} /> }
+       { resultFromOtherPlatforms.titles.length >0 && <Tiles data={resultFromOtherPlatforms} watchable={false} whenChange={setClicked} /> }
       </div>
     </div>
   );

@@ -35,6 +35,15 @@ const Tile = (props) => {
     return s;
   }
 
+  function getOTTName(platform){
+    if(platform=="netflix")
+      return "Netflix"
+    if(platform=="prime")
+      return "Prime Video"
+    if(platform=="hotstar")
+      return "Hotstar"
+  }
+
   return (
     <div
       key={index}
@@ -107,7 +116,7 @@ const Tile = (props) => {
                   src={require(`../assets/${title.platform}cardlogo.png`)}
                 />
               </span>
-              {title.platform[0].toUpperCase() + title.platform.slice(1)}
+              {getOTTName(title.platform)}
             </button>
           </div>
         )}

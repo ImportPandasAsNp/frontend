@@ -9,6 +9,15 @@ import AgeRatingContext from "../contexts/ageRatingContext";
 
 const Home = () => {
   const [subscribeSuggestions,setSubscribeSuggestions] = useState({})
+
+  function getOTTName(platform){
+    if(platform=="netflix")
+      return "Netflix"
+    if(platform=="prime")
+      return "Prime Video"
+    if(platform=="hotstar")
+      return "Hotstar"
+  }
   //   const subscribeSuggestions = {
   //   platform: "hotstar",
   //   genre: "sci-fi",
@@ -139,7 +148,7 @@ const Home = () => {
           }
         })
         sliderData = sliderData.slice(0,Math.min(sliderData.length,5))
-        setSubscribeSuggestions(generateHeading(`Based on your preferences you should subscribe to ${bestOtherPlatform}`,bestOtherPlatform,sliderData))
+        setSubscribeSuggestions(generateHeading(`Based on your preferences you should subscribe to ${getOTTName(bestOtherPlatform)}`,bestOtherPlatform,sliderData))
       }
 
 
