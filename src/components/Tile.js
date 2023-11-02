@@ -97,7 +97,7 @@ const Tile = (props) => {
                   />
                 </span>{" "}
                 <p>
-                  {title.platform[0].toUpperCase() + title.platform.slice(1)}
+                  {getOTTName(title.platform)}
                 </p>
               </div>
             </div>
