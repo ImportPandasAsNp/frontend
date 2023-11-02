@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex bg-primary">
-      <div className="p-24 text-2xl  gap-10  flex flex-col items-center h-screen w-full">
+      <div className="p-10 text-2xl  gap-10  flex flex-col items-center h-screen w-full">
         <div className="  w-4/12 bg-dark-primary flex flex-col gap-6 rounded-lg items-center  p-8 ">
           <h1 className="text-white text-4xl mb-2 font-semibold flex flex-row gap-2 justify-center items-center">
             {login ? "Login to" : "Register on"} &nbsp;
