@@ -16,7 +16,7 @@ const Home = () => {
     if(platform=="prime")
       return "Prime Video"
     if(platform=="hotstar")
-      return "Hotstar"
+      return "Disney+"
   }
   //   const subscribeSuggestions = {
   //   platform: "hotstar",

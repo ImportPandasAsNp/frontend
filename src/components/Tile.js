@@ -41,7 +41,7 @@ const Tile = (props) => {
     if(platform=="prime")
       return "Prime Video"
     if(platform=="hotstar")
-      return "Hotstar"
+      return "Disney+"
   }
 
   return (

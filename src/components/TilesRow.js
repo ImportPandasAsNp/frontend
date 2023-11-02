@@ -31,6 +31,8 @@ const Tiles = (props) => {
     const body = {
       movie_id: key,
       duration: sliderValue,
+      day:1,
+      hour:1
     };
 
     const auth = {
