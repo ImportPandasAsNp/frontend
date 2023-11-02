@@ -22,6 +22,15 @@ const Tiles = (props) => {
     );
   }
 
+  function getOTTName(platform){
+    if(platform=="netflix")
+      return "Netflix"
+    if(platform=="prime")
+      return "Prime Video"
+    if(platform=="hotstar")
+      return "Disney+"
+  }
+
   const onWatchHandler = (key, title,sliderValue) => {
     window.confirm("You watched " + title);
     let r = (Math.random() + 1).toString(36).substring(7);
@@ -47,7 +56,7 @@ const Tiles = (props) => {
   };
 
   const onSubscriptionsHandler = (platform) => {
-    window.confirm("You subscribed to " + platform);
+    window.confirm("You subscribed to " + getOTTName(platform));
     let r = (Math.random() + 1).toString(36).substring(7);
     props.whenChange(r);
     const token = getLocalStorage("token");
