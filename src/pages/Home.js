@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
 import useLocalStorage from "../Hooks/LocalStorage";
 import Sidebar from "../components/Sidebar";
 import SubscribeRow from "../components/SubscribeRow";
@@ -100,6 +101,8 @@ const Home = () => {
     }
   }
 
+  const [loading,setLoading] = useState(true);
+
   useEffect(() => {
     // if(clicked!==''){
     //   sleep(2000).then(()=>{
@@ -130,6 +133,7 @@ const Home = () => {
     promiseList.push(axios.post(backendUrl + "/mostfrequent" + "/cast", { rating: ageRating }, auth))
 
     Promise.all(promiseList).then((responses)=>{
+      setLoading(false);
       let list = getContentTemplateFromMetadataList(responses[0].data);
       setRecommended(generateResponse("Recommended for You", list));
 
@@ -164,6 +168,13 @@ const Home = () => {
     <div className="flex bg-primary">
       <Sidebar />
       <div className="p-7 text-2xl font-semibold gap-10 flex flex-col items-center h-screen w-full overflow-y-scroll">
+      <MoonLoader
+          color={"#ffffff"}
+          loading={loading}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          className="mt-60"
+        />
         <SubscribeRow data={subscribeSuggestions} watchable={false} whenChange={setClicked} />
         {<Tiles data={recommended} watchable={true} whenChange={setClicked} />}
         {
